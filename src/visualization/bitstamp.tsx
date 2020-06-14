@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Chart from "./chart";
 import Table from "./table";
 import * as Util from "./utils";
+import * as MovingAverage from "../lib/moving-average";
+
 const host = "wss://ws.bitstamp.net";
 
 const ws: WebSocket = new WebSocket(host);
@@ -20,41 +22,28 @@ ws.onopen = () => {
   });
 };
 
-const Badge = (props: {
-  text: string;
-  isPrimary?: boolean;
-  onClick: (channel: string) => void;
-}) => {
-  const { text, isPrimary = false } = props;
-  const color = isPrimary ? "primary" : "secondary";
-  const className = "badge badge-pill badge-" + color;
-  return (
-    <span onClick={() => props.onClick(text)} className={className}>
-      {text}
-    </span>
-  );
+const prepareData = (d: number[], cutoffIdx: number) => {
+  const l = d.length;
+
+  if (l < cutoffIdx) {
+    const first = d[0];
+    const a = new Array(cutoffIdx - l).fill(first);
+    return a;
+  }
+
+  return d;
 };
 
-const Badges = (props: {
-  channelSelected?: string;
-  onClick: (channel: string) => void;
-}) => {
-  const { channelSelected = "live_trades_btcusd" } = props;
+const prepareDataWMA = (d: number[], nMa: number, cutoffIdx: number) => {
+  const e = prepareData(d, cutoffIdx);
+  const preMa = MovingAverage.simple(e, nMa);
 
-  return (
-    <>
-      {Util.channels.map((channel, i) => {
-        return (
-          <Badge
-            key={i}
-            onClick={(v) => props.onClick(v)}
-            text={channel}
-            isPrimary={channelSelected === channel}
-          />
-        );
-      })}
-    </>
-  );
+  const data = e.slice(nMa);
+  const ma = preMa.slice(nMa);
+
+  console.log({ data, ma });
+
+  return { data, ma };
 };
 
 export default () => {
@@ -80,20 +69,23 @@ export default () => {
   };
 
   const i: number = Util.channels.indexOf(selectedChannel);
+  const cutoffIdx = 10;
+  const { data, ma } = prepareDataWMA(d[0][i].values, cutoffIdx, 15);
 
   return (
     <>
       <h3>Table</h3>
       <Table data={d} />
       <h3>Chart</h3>
-      <Badges
+      <Util.Badges
         onClick={(c) => setChannel(c)}
         channelSelected={selectedChannel}
       />
       <Chart
         chartLabel={selectedChannel}
-        data={d[0][i].values}
-        labels={d[0][i].values.map((_, i) => "" + i)}
+        data={data}
+        data2={ma}
+        labels={data.map((_, i) => "" + i)}
       />
     </>
   );

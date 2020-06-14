@@ -1,3 +1,4 @@
+import React from "react";
 import * as T from "./type";
 
 export const colors = [
@@ -36,6 +37,45 @@ const initUnit = {
   values: [],
 };
 
-export const init: T.V[][] = new Array(1)
-  .fill(0)
-  .map((row) => new Array(channels.length).fill(initUnit));
+export const init: T.V[][] = new Array(1).fill(0).map((_row) => {
+  const d: T.V[] = new Array(channels.length).fill(initUnit);
+
+  return d;
+});
+
+const Badge = (props: {
+  text: string;
+  isPrimary?: boolean;
+  onClick: (channel: string) => void;
+}) => {
+  const { text, isPrimary = false } = props;
+  const color = isPrimary ? "primary" : "secondary";
+  const className = "badge badge-pill badge-" + color;
+  return (
+    <span onClick={() => props.onClick(text)} className={className}>
+      {text}
+    </span>
+  );
+};
+
+export const Badges = (props: {
+  channelSelected?: string;
+  onClick: (channel: string) => void;
+}) => {
+  const { channelSelected = "live_trades_btcusd" } = props;
+
+  return (
+    <>
+      {channels.map((channel, i) => {
+        return (
+          <Badge
+            key={i}
+            onClick={(v) => props.onClick(v)}
+            text={channel}
+            isPrimary={channelSelected === channel}
+          />
+        );
+      })}
+    </>
+  );
+};
