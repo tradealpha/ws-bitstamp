@@ -5,17 +5,17 @@
     "main.js.map": "/ws-bitstamp/static/js/main.f78ecd8c.chunk.js.map",
     "runtime-main.js": "/ws-bitstamp/static/js/runtime-main.b111871a.js",
     "runtime-main.js.map": "/ws-bitstamp/static/js/runtime-main.b111871a.js.map",
-    "static/js/2.aa139b06.chunk.js": "/ws-bitstamp/static/js/2.aa139b06.chunk.js",
-    "static/js/2.aa139b06.chunk.js.map": "/ws-bitstamp/static/js/2.aa139b06.chunk.js.map",
+    "static/js/2.4d827557.chunk.js": "/ws-bitstamp/static/js/2.4d827557.chunk.js",
+    "static/js/2.4d827557.chunk.js.map": "/ws-bitstamp/static/js/2.4d827557.chunk.js.map",
     "index.html": "/ws-bitstamp/index.html",
-    "precache-manifest.e7f2e5b8785cabac2123649109685c26.js": "/ws-bitstamp/precache-manifest.e7f2e5b8785cabac2123649109685c26.js",
+    "precache-manifest.85fe10fa69c260a4b34393c230d10ba7.js": "/ws-bitstamp/precache-manifest.85fe10fa69c260a4b34393c230d10ba7.js",
     "service-worker.js": "/ws-bitstamp/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/ws-bitstamp/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.aa139b06.chunk.js.LICENSE.txt": "/ws-bitstamp/static/js/2.aa139b06.chunk.js.LICENSE.txt"
+    "static/js/2.4d827557.chunk.js.LICENSE.txt": "/ws-bitstamp/static/js/2.4d827557.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b111871a.js",
-    "static/js/2.aa139b06.chunk.js",
+    "static/js/2.4d827557.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
     "static/js/main.f78ecd8c.chunk.js"
   ]
