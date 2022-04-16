@@ -18,7 +18,7 @@ jobs:
       - run: yarn
       #- run: yarn test
       - name: Build page
-        run: PUBLIC_URL=/ws-bitstamp react-scripts build
+        run: PUBLIC_URL=/ws-bitstamp yarn build
       - name: add 404
         run: cp build/index.html build/404.html
       - name: Deploy to gh-pages
