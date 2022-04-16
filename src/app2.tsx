@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./App.css";
+import "./app.css";
 import Chart from "./chart";
 import { ResponseData } from "./type";
 import * as U from "./utils";
