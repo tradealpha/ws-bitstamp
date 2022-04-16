@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 14
       - run: yarn
-      - run: yarn test
+      #- run: yarn test
       - name: Build page
         run: PUBLIC_URL=/ws-bitstamp react-scripts build
       - name: add 404
